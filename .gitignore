@@ -1,0 +1,4 @@
+# Prevent committing sensitive Gemini API key
+background.js
+# Ignore config with API keys
+js/config.js
