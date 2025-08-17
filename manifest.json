@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "ThinkFlow",
+  "version": "0.1.0",
+  "description": "Flow through problems. Master the logic. Get instant resources, tutorials, and AI-powered clarifications for LeetCode and Codeforces—without ever revealing solutions.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon-16.png",
+      "32": "assets/icons/icon-32.png",
+      "48": "assets/icons/icon-48.png",
+      "64": "assets/icons/icon-64.png",
+      "128": "assets/icons/icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/*", "https://codeforces.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "64": "assets/icons/icon-64.png",
+    "128": "assets/icons/icon-128.png"
+  }
+}
