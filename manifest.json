@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ThinkFlow",
   "version": "0.1.0",
-  "description": "Flow through problems. Master the logic. Get instant resources, tutorials, and AI-powered clarifications for LeetCode and Codeforces—without ever revealing solutions.",
+  "description": "Flow through problems. Master the logic. Instant resources and AI help for LeetCode & Codeforces.",
   "permissions": [
     "tabs",
     "activeTab",
