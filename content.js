@@ -1,3 +1,23 @@
+  // Listen for toggle messages from popup
+  chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg && msg.type === 'THINKFLOW_IFRAME_TOGGLE') {
+      if (msg.enabled) {
+        chrome.storage.sync.get(['thinkflow_mode'], (result) => {
+          if (result.thinkflow_mode === 'iframe') {
+            injectFloatingButton();
+          }
+        });
+      } else {
+        // Remove if present (regardless of mode)
+        const btn = document.getElementById(BUTTON_ID);
+        const iframe = document.getElementById(WIDGET_ID);
+        const closeBtn = document.getElementById(WIDGET_ID + '_close');
+        if (btn) btn.remove();
+        if (iframe) iframe.remove();
+        if (closeBtn) closeBtn.remove();
+      }
+    }
+  });
 // Sends chrome.runtime messages:
 //  - outgoing: { type: 'PROBLEM_DETECTED', payload: { site, title, number, url, raw } }
 //  - responds to incoming: { type: 'GET_PROBLEM_INFO' } -> returns latest problem or null
@@ -112,12 +132,22 @@
     document.body.appendChild(closeBtn);
   }
 
+
   // Inject button on page load
-  // Only inject floating button if user selected 'iframe' mode
+  // Only inject floating button if user selected 'iframe' mode AND enabled the toggle
   function maybeInjectFloatingButton() {
-    chrome.storage.sync.get(['thinkflow_mode'], (result) => {
-      if (result.thinkflow_mode === 'iframe') {
+    chrome.storage.sync.get(['thinkflow_mode', 'thinkflow_iframe_enabled'], (result) => {
+      const enabled = result.thinkflow_iframe_enabled !== false; // default true
+      if (result.thinkflow_mode === 'iframe' && enabled) {
         injectFloatingButton();
+      } else {
+        // Remove if present (in case user disables)
+        const btn = document.getElementById(BUTTON_ID);
+        const iframe = document.getElementById(WIDGET_ID);
+        const closeBtn = document.getElementById(WIDGET_ID + '_close');
+        if (btn) btn.remove();
+        if (iframe) iframe.remove();
+        if (closeBtn) closeBtn.remove();
       }
     });
   }

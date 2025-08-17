@@ -1,3 +1,21 @@
+// --- In-frame popup toggle logic ---
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('toggle_iframe_popup');
+  if (!toggle) return;
+  // Load state
+  chrome.storage.sync.get(['thinkflow_iframe_enabled'], (result) => {
+    const enabled = result.thinkflow_iframe_enabled !== false; // default true
+    toggle.checked = enabled;
+  });
+  // On toggle
+  toggle.addEventListener('change', () => {
+    const enabled = toggle.checked;
+    chrome.storage.sync.set({ thinkflow_iframe_enabled: enabled }, () => {
+      // Notify background to update all matching tabs
+      chrome.runtime.sendMessage({ type: 'THINKFLOW_IFRAME_TOGGLE', enabled });
+    });
+  });
+});
 // Helper: Check if user is asking for code/solution
 function isSolutionRequest(text) {
   const patterns = [
