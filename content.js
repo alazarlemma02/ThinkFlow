@@ -8,6 +8,125 @@
   // --- state ---
   let latestProblem = null;
 
+  // --- Floating Widget Injection ---
+  const WIDGET_ID = '__thinkflow_widget_iframe';
+  const BUTTON_ID = '__thinkflow_floating_btn';
+
+  function injectFloatingButton() {
+    if (document.getElementById(BUTTON_ID)) return;
+    const btn = document.createElement('button');
+    btn.id = BUTTON_ID;
+    btn.title = 'Open ThinkFlow';
+    btn.style.position = 'fixed';
+    btn.style.bottom = '32px';
+    btn.style.right = '32px';
+    btn.style.zIndex = '2147483647';
+    btn.style.width = '56px';
+    btn.style.height = '56px';
+    btn.style.borderRadius = '50%';
+    btn.style.background = 'linear-gradient(135deg, #75747290 0%, #75747290 100%)';
+    btn.style.boxShadow = '0 4px 24px rgba(26,26,64,0.18)';
+    btn.style.border = 'none';
+    btn.style.cursor = 'pointer';
+    btn.style.display = 'flex';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+    btn.style.transition = 'box-shadow 0.2s, filter 0.2s';
+    btn.addEventListener('mouseenter', () => {
+      btn.style.boxShadow = '0 0 0 6px #F7931E55, 0 8px 32px rgba(26,26,64,0.28)';
+      btn.style.filter = 'brightness(1.08)';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.boxShadow = '0 4px 24px rgba(26,26,64,0.18)';
+      btn.style.filter = 'none';
+    });
+    btn.addEventListener('click', toggleWidgetIframe);
+
+    // Add logo image
+    const logo = document.createElement('img');
+    logo.src = chrome.runtime.getURL('assets/icons/icon-128.png');
+    logo.alt = 'ThinkFlow';
+    logo.style.width = '45px';
+    logo.style.height = '45px';
+    logo.style.objectFit = 'contain';
+    logo.style.display = 'block';
+    btn.appendChild(logo);
+
+    document.body.appendChild(btn);
+  }
+
+  function toggleWidgetIframe() {
+    const iframe = document.getElementById(WIDGET_ID);
+    const closeBtn = document.getElementById(WIDGET_ID + '_close');
+    if (iframe && closeBtn) {
+      iframe.remove();
+      closeBtn.remove();
+    } else {
+      injectWidgetIframe();
+    }
+  }
+
+  function injectWidgetIframe() {
+    if (document.getElementById(WIDGET_ID)) return;
+    const iframe = document.createElement('iframe');
+    iframe.id = WIDGET_ID;
+    iframe.src = chrome.runtime.getURL('popup.html');
+    iframe.style.position = 'fixed';
+    iframe.style.bottom = '100px';
+    iframe.style.right = '40px';
+    iframe.style.width = '420px';
+    iframe.style.height = '500px';
+    iframe.style.border = 'none';
+    iframe.style.borderRadius = '18px';
+    iframe.style.boxShadow = '0 8px 32px rgba(26,26,64,0.18)';
+    iframe.style.zIndex = '2147483647';
+    iframe.style.background = 'transparent';
+    iframe.style.transition = 'opacity 0.2s';
+    iframe.allow = 'clipboard-write;';
+
+    // Add a close button overlay
+    const closeBtn = document.createElement('button');
+    closeBtn.id = WIDGET_ID + '_close';
+    closeBtn.innerText = '×';
+    closeBtn.title = 'Close ThinkFlow';
+    closeBtn.style.position = 'fixed';
+    closeBtn.style.bottom = '580px';
+    closeBtn.style.right = '420px';
+    closeBtn.style.width = '36px';
+    closeBtn.style.height = '36px';
+    closeBtn.style.borderRadius = '50%';
+    closeBtn.style.background = '#fff';
+    closeBtn.style.color = '#F7931E';
+    closeBtn.style.fontWeight = 'bold';
+    closeBtn.style.fontSize = '1.6em';
+    closeBtn.style.boxShadow = '0 2px 8px rgba(26,26,64,0.10)';
+    closeBtn.style.border = 'none';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.style.zIndex = '2147483648';
+    closeBtn.addEventListener('click', () => {
+      iframe.remove();
+      closeBtn.remove();
+    });
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(closeBtn);
+  }
+
+  // Inject button on page load
+  // Only inject floating button if user selected 'iframe' mode
+  function maybeInjectFloatingButton() {
+    chrome.storage.sync.get(['thinkflow_mode'], (result) => {
+      if (result.thinkflow_mode === 'iframe') {
+        injectFloatingButton();
+      }
+    });
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    maybeInjectFloatingButton();
+  } else {
+    window.addEventListener('DOMContentLoaded', maybeInjectFloatingButton);
+  }
+
   // --- LeetCode selector candidates (old + new + fallbacks) ---
   const LEETCODE_SELECTORS = [
     'h1[data-cy="question-title"]',

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ThinkFlow Setup</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to ThinkFlow!</h2>
+    <p>How would you like to use the extension?</p>
+    <form id="modeForm">
+      <div class="mode-options-row">
+        <button type="button" id="btn_popup" class="mode-btn selected">Classic Popup<br><span class="mode-desc">(browser toolbar)</span></button>
+        <button type="button" id="btn_iframe" class="mode-btn">Floating Widget<br><span class="mode-desc">(in-page button & modal)</span></button>
+      </div>
+      <input type="hidden" id="mode_input" name="mode" value="popup">
+      <button type="submit">Save Preference</button>
+      <div class="success" id="successMsg" style="display:none;">Preference saved! You can now continue using ThinkFlow.</div>
+    </form>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

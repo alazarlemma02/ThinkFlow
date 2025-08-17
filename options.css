@@ -1,0 +1,103 @@
+.thinkflow-floating-btn {
+  background: linear-gradient(135deg, #fff 0%, #ffe5c2 100%);
+  border: 0.5px solid #F7931E;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 4px 24px #F7931E33, 0 1.5px 6px #F7931E22;
+  cursor: pointer;
+  outline: none;
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 2147483647;
+  animation: tf-bounce-in 0.7s cubic-bezier(.22,1.2,.36,1) 1;
+  transition: box-shadow 0.28s cubic-bezier(.4,0,.2,1), transform 0.22s cubic-bezier(.4,0,.2,1), background 0.22s;
+}
+.thinkflow-floating-btn img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: filter 0.22s, transform 0.22s;
+  box-shadow: 0 2px 8px #F7931E22;
+}
+.thinkflow-floating-btn:hover, .thinkflow-floating-btn:focus {
+  background: linear-gradient(135deg, #F7931E 0%, #FFD23F 100%);
+  box-shadow: 0 0 0 12px #f7921e51, 0 8px 32px #f7921e59, 0 2px 8px #F7931E22;
+  transform: scale(1.08) rotate(-4deg);
+}
+.thinkflow-floating-btn:hover img, .thinkflow-floating-btn:focus img {
+  filter: drop-shadow(0 0 12px #FFD23F) brightness(1.12) saturate(1.2);
+  transform: scale(1.12) rotate(-8deg);
+}
+@keyframes tf-bounce-in {
+  0% { transform: scale(0.7) translateY(40px); opacity: 0; }
+  60% { transform: scale(1.08) translateY(-8px); opacity: 1; }
+  80% { transform: scale(0.98) translateY(2px); }
+  100% { transform: scale(1) translateY(0); }
+}
+.thinkflow-floating-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+  transition: box-shadow 0.25s cubic-bezier(.4,0,.2,1), transform 0.22s cubic-bezier(.4,0,.2,1);
+  outline: none;
+}
+.thinkflow-floating-btn img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  transition: box-shadow 0.25s cubic-bezier(.4,0,.2,1), transform 0.22s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 8px rgba(26,26,64,0.10);
+}
+.thinkflow-floating-btn:hover img, .thinkflow-floating-btn:focus img {
+  box-shadow: 0 0 0 10px #f7921ecc, 0 8px 32px #F7931E, 0 2px 8px rgba(26,26,64,0.10);
+  transform: scale(1.08) rotate(-6deg);
+  filter: brightness(1.08) drop-shadow(0 0 8px #F7931E88);
+}
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafafa; color: #222; margin: 0; padding: 32px; }
+.container { max-width: 420px; margin: 40px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(26,26,64,0.10); padding: 32px; }
+h2 { color: #F7931E; margin-top: 0; }
+label { display: block; margin: 18px 0 8px; font-weight: 500; }
+.mode-option { margin: 12px 0; }
+button { background: linear-gradient(135deg, #F7931E 0%, #FFD23F 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 24px; }
+button:disabled { background: #eee; color: #aaa; cursor: not-allowed; }
+.success { color: #2EC4B6; margin-top: 18px; font-weight: 500; }
+.mode-options-row { display: flex; gap: 18px; margin: 24px 0 18px; }
+.mode-btn {
+  flex: 1;
+  background: #f5f5f5;
+  color: #222;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  padding: 18px 10px 14px 10px;
+  font-size: 1.08em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  outline: none;
+  box-shadow: 0 1px 4px rgba(26,26,64,0.06);
+  margin: 0;
+  text-align: center;
+  min-width: 0;
+}
+.mode-btn.selected, .mode-btn:focus {
+  background: linear-gradient(135deg, #F7931E 0%, #FFD23F 100%);
+  color: #fff;
+  border-color: #F7931E;
+  box-shadow: 0 2px 12px rgba(247,147,30,0.10);
+}
+.mode-btn .mode-desc {
+  display: block;
+  font-size: 0.92em;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 2px;
+}
