@@ -1,3 +1,66 @@
+/* Header bar layout for centering */
+.tf-header-bar {
+  display: grid;
+  grid-template-columns: 44px 1fr 32px;
+  align-items: center;
+  gap: 0 10px;
+  position: relative;
+}
+.tf-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+/* Cute toggle switch for in-frame popup */
+
+/* Cute toggle switch: white when off, main orange when on */
+.tf-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  margin-right: 6px;
+}
+.tf-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.tf-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 24px;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(26,26,64,0.10);
+  border: 1.5px solid var(--primary);
+}
+.tf-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(247,147,30,0.15);
+  transition: transform 0.2s, background 0.2s;
+}
+.tf-toggle-switch input:checked + .tf-slider {
+  background: var(--primary);
+}
+.tf-toggle-switch input:checked + .tf-slider:before {
+  transform: translateX(20px);
+  background: #fff;
+}
 /* Modern, curved, and visually appealing design */
 
 :root {
@@ -198,14 +261,14 @@ main {
   width: 24px;
   height: 24px;
   vertical-align: middle;
-  margin-right: 8px;
-  margin-bottom: 3px;
+  margin-right: 6px;
+  margin-bottom: 0;
   display: inline-block;
 }
 
 .question-title-text {
   vertical-align: middle;
-  flex: 1;
+  margin-right: 6px;
 }
 
 .diff-dot {
