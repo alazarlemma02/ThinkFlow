@@ -2,7 +2,10 @@
 
 > **Flow through problems. Master the logic.**
 
+
 ThinkFlow is a modern Chrome extension that enhances your LeetCode and Codeforces experience by providing instant problem context, curated resources, and an AI-powered assistant—all in a beautiful, distraction-free UI.
+
+**Now available on the [Chrome Web Store as ThinkFlow](https://chromewebstore.google.com/detail/mkiicdeengfjeeffkddengoakapnphbf?utm_source=item-share-cb)!**
 
 ## Features
 
@@ -31,21 +34,28 @@ ThinkFlow is a modern Chrome extension that enhances your LeetCode and Codeforce
 - Manifest V3, fully Chrome Web Store compliant
 - All UI and logic is in the `ThinkFlow` directory
 
+
 ## Roadmap
 
-- [ ] Official Chrome Web Store release
+- [x] Official Chrome Web Store release
 - [ ] More site support (AtCoder, HackerRank, etc.)
 - [ ] Customizable themes
 - [ ] Enhanced AI capabilities
 
 ## Contributing
 
-Pull requests and suggestions are welcome! Please open an issue to discuss your ideas or report bugs.
+ThinkFlow is an open-source project, and contributions are highly encouraged!
+Whether you want to fix bugs, suggest new features, improve documentation, or help with UI/UX, your input is welcome.
+
+- Please open an issue to discuss your ideas or report bugs.
+- For larger changes, open a discussion first to ensure alignment with the project vision.
+- All contributions should maintain a professional and respectful standard.
+
+Let's build a better learning tool together!
 
 ## License
 
 MIT License (see LICENSE file)
 
----
 
-*This README will be updated with store links and screenshots upon official release.*
+*Now live on the [Chrome Web Store as ThinkFlow](https://chromewebstore.google.com/detail/mkiicdeengfjeeffkddengoakapnphbf?utm_source=item-share-cb)!*

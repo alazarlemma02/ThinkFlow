@@ -149,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (problemCard) problemCard.style.display = 'none';
 
       const suggestedQs = [
-        "What is the main goal of this problem?",
-        "Can you explain the input and output format?",
-        "What are the key constraints?",
-        "What are common mistakes to avoid?"
+        "What algorithm should I use?",
+        "How can I optimize my code?",
+        "What edge cases matter?",
+        "Any hints to start?"
       ];
 
       // Use the last rendered problemInfo for difficulty
